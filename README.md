@@ -303,9 +303,7 @@ __重启项目__，再次打开http://localhost:8080/swagger-ui.html，可以发
 
 作用：标记在controller类上，说明该controller的功能
 
-参数：
-
-1. tags：controller的注释
+参数：`tags：controller的注释`
 
 
 
@@ -313,9 +311,7 @@ __重启项目__，再次打开http://localhost:8080/swagger-ui.html，可以发
 
 作用：标记在使用 @RequestMapping 来映射请求的方法上，说明该接口的功能
 
-参数：
-
-1. value: 接口的注释
+参数：`value: 接口的注释`
 
 
 
@@ -352,13 +348,13 @@ __重启项目__，再次打开http://localhost:8080/swagger-ui.html，可以发
 
 
 
-效果如下：![image-20220329013500875](C:\Users\HP\IdeaProjects\swaggerdemo\assert\image-20220329013500875.png)
+效果如下：![image-20220329013500875](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220329013500875.png)
 
 其中ApiImplicitParam的example参数将在测试接口时当成默认值
 
 点击try it out，效果如下
 
-![image-20220329013621754](C:\Users\HP\IdeaProjects\swaggerdemo\assert\image-20220329013621754.png)
+![image-20220329013621754](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220329013621754.png)
 
 
 
@@ -417,7 +413,7 @@ public class HelloController
 
  	1. value 实体类属性的注释
  	2. position 这个属性在swagger文档对应的model中的显示顺序
- 	1. example 这个属性的示例值
+ 	3. example 这个属性的示例值
 
 
 
