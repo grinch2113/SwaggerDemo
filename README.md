@@ -277,7 +277,7 @@ public class SwaggerConfig
 }
 ```
 
-__重启项目__，再次打开http://localhost:8080/swagger-ui.html，可以发现下拉框中有第二个组
+__重启项目__，再次打开http://localhost:8080/swagger-ui.html 可以发现下拉框中有第二个组
 
 ![image-20220328174923084](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220328174923084.png)
 
