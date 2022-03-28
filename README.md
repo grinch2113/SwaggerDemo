@@ -98,7 +98,7 @@ public class SwaggerdemoApplication
 
 ### 实体类
 
-```
+```java
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
