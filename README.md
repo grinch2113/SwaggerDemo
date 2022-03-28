@@ -305,6 +305,16 @@ __重启项目__，再次打开http://localhost:8080/swagger-ui.html 可以发�
 
 参数：`tags：controller的注释`
 
+代码示例
+
+```java
+@RestController
+@Api(tags = "用户登录") //controller注释
+public class HelloController
+```
+
+
+
 
 
 * @ApiOperation
@@ -312,6 +322,21 @@ __重启项目__，再次打开http://localhost:8080/swagger-ui.html 可以发�
 作用：标记在使用 @RequestMapping 来映射请求的方法上，说明该接口的功能
 
 参数：`value: 接口的注释`
+
+代码示例
+
+```java
+@ApiOperation(value = "登录接口") // controller中的接口注释
+@PostMapping(value = "/login")
+public R<User> login(@RequestBody User user)
+{
+	return new R<User>();
+}
+```
+
+
+
+
 
 
 
@@ -337,13 +362,20 @@ __重启项目__，再次打开http://localhost:8080/swagger-ui.html 可以发�
 
 
 
-两者使用示例：
+使用示例：
 
 ```java
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "currentPage",value = "当前页码",dataType = "int",example = "1"),
-			@ApiImplicitParam(name = "numOfRecordsPerPage",value = "每页数据条数",dataType = "int",example = "5")
-	})
+@ApiOperation("查找所有用户")
+@GetMapping("listAllUsers")
+@ApiImplicitParams({
+		@ApiImplicitParam(name = "currentPage",value = "当前页码",dataType = "int",example = "1"),
+		@ApiImplicitParam(name = "numOfRecordsPerPage",value = "每页数据条数",dataType = "int",example = "5")
+})
+public R<List<User>> listAllUsers(@RequestParam("currentPage") int currentPage, 
+                                  @RequestParam("numOfRecordsPerPage") int numOfRecordsPerPage)
+	{
+		return new R<List<User>>();
+	}
 ```
 
 
@@ -364,6 +396,20 @@ __重启项目__，再次打开http://localhost:8080/swagger-ui.html 可以发�
 
 标记在参数列表中的一个参数上，效果与@ApiImplicitParam一样，但是不需要指定dataType
 
+代码示例
+
+```java
+@ApiOperation("查找一部分用户")
+@GetMapping("listPartOfUsers")
+public R<List<User>> listPartOfUsers(
+@RequestParam("currentPage") @ApiParam(value = "当前页码",example = "1") int currentPage,
+@RequestParam("numOfRecordsPerPage") @NotNull  @ApiParam(value = "每页数据条数",example = "5") int numOfRecordsPerPage
+)
+{
+	return new R<List<User>>();
+}
+```
+
 
 
 
@@ -376,13 +422,35 @@ __重启项目__，再次打开http://localhost:8080/swagger-ui.html 可以发�
 public class HelloController
 {
 
-	 @ApiOperation(value = "登录接口") // controller中的接口注释
+	@ApiOperation(value = "登录接口") // controller中的接口注释
 	@PostMapping(value = "/login")
 	public R<User> login(@RequestBody User user){
 		return new R<User>().ok("登录成功").setResponseData(user);
 	}
-}
 
+	@ApiOperation("查找所有用户")
+	@GetMapping("listAllUsers")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "currentPage",value = "当前页码",dataType = "int",example = "1"),
+			@ApiImplicitParam(name = "numOfRecordsPerPage",value = "每页数据条数",dataType = "int",example = "5")
+	})
+	public R<List<User>> listAllUsers(
+        @RequestParam("currentPage") int currentPage, 
+        @RequestParam("numOfRecordsPerPage") int numOfRecordsPerPage)
+	{
+		return new R<List<User>>();
+	}
+
+	@ApiOperation("查找一部分用户")
+	@GetMapping("listPartOfUsers")
+	public R<List<User>> listPartOfUsers(
+		@RequestParam("currentPage") @NotNull @ApiParam(value = "当前页码",example = "1") int currentPage,
+		@RequestParam("numOfRecordsPerPage") @NotNull  @ApiParam(value = "每页数据条数",example = "5") int numOfRecordsPerPage
+	)
+	{
+		return new R<List<User>>();
+	}
+}
 ```
 
 
@@ -429,11 +497,9 @@ public class User implements Serializable
    public static final long serialVersionUID = 42L;
 
 
-   @Length(min=6,max = 8,message = "用户名长度为6-8位")
    @ApiModelProperty(value = "用户名", example = "miku")
     String username;
 
-   @NotNull(message = "密码不能为空")
    @ApiModelProperty(value = "密码", example = "123456")
     String password;
 }
@@ -466,28 +532,7 @@ public class R<T> implements Serializable {
       this.code = 0;
       this.message = "success";
       this.success = true;
-   }
-
-   public R error() {
-      return error(HttpStatus.SC_INTERNAL_SERVER_ERROR, "未知异常，请联系管理员");
-   }
-
-   public R error(String message) {
-      return new R().error(HttpStatus.SC_INTERNAL_SERVER_ERROR, message);
-   }
-
-   public R error(int code, String message) {
-      setMessage(message);
-      setCode(code);
-      setSuccess(false);
-      return this;
-   }
-   public R error(ResultCodeEnum resultCodeEnum) {
-      setCode(resultCodeEnum.getCode());
-      setMessage(resultCodeEnum.getMsg());
-      setSuccess(false);
-      return this;
-   }
+   } 
 
    public R ok(String message) {
       setMessage(message);

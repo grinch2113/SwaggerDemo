@@ -16,7 +16,7 @@ import java.io.Serializable;
  *
  * @author Mark sunlightcs@gmail.com
  */
-@ToString
+
 @ApiModel(value = "统一返回结果")
 @Data
 public class R<T> implements Serializable {
@@ -40,38 +40,11 @@ public class R<T> implements Serializable {
 		this.success = true;
 	}
 
-	public R error() {
-		return error(HttpStatus.SC_INTERNAL_SERVER_ERROR, "未知异常，请联系管理员");
-	}
-
-	public R error(String message) {
-		return new R().error(HttpStatus.SC_INTERNAL_SERVER_ERROR, message);
-	}
-
-	public R error(int code, String message) {
-		setMessage(message);
-		setCode(code);
-		setSuccess(false);
-		return this;
-	}
-	public R error(ResultCodeEnum resultCodeEnum) {
-		setCode(resultCodeEnum.getCode());
-		setMessage(resultCodeEnum.getMsg());
-		setSuccess(false);
-		return this;
-	}
-
 	public R ok(String message) {
 		setMessage(message);
 		return this;
 	}
 
-
-	public <T> T getData(String key, TypeReference<T> tTypeReference) {
-		String toJSONString = JSON.toJSONString(data);
-		T t = JSON.parseObject(toJSONString, tTypeReference);
-		return t;
-	}
 
 	public R setResponseData(T obj)
 	{

@@ -16,7 +16,7 @@ import java.util.List;
 public class HelloController
 {
 
-	 @ApiOperation(value = "登录接口") // controller中的接口注释
+	@ApiOperation(value = "登录接口") // controller中的接口注释
 	@PostMapping(value = "/login")
 	public R<User> login(@RequestBody User user){
 		return new R<User>().ok("登录成功").setResponseData(user);
