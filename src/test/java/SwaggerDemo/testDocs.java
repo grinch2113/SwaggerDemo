@@ -28,7 +28,7 @@ public class testDocs
 	public void generateMarkdownFile() throws Exception {
 		Swagger2MarkupConfig config = new Swagger2MarkupConfigBuilder()
 				// 指定文件格式为markdown
-				.withMarkupLanguage(MarkupLanguage.ASCIIDOC)
+				.withMarkupLanguage(MarkupLanguage.MARKDOWN)
 				// 指定语言为中文
 				.withOutputLanguage(Language.ZH)
 				// 生成参数示例
