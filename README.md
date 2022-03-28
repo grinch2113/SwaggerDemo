@@ -76,7 +76,7 @@ File - New - Project 选Maven项目
 
 ## 编写SpringBoot的一个demo
 
-在RESTful接口中，前端传过来的是json。我们用User对象来接收参数，@RequestBody注解会帮我们用输入流的方式将json数据转换成User对象。
+post请求中，前端传过来的是json。我们用User对象来接收参数，@RequestBody注解会帮我们用输入流的方式将json数据转换成User对象。
 
 后端返回数据时，用一个响应结果实体类来装载响应数据。该类的属性有响应码code，响应信息message，是否成功success，返回的数据data。该类是泛型类，返回的数据用Java类封装起来之后，传给该响应结果类。通过@RestController或@ResponseBody注解将响应结果对象转换成json后传给前端。
 
@@ -305,17 +305,70 @@ __重启项目__，再次打开http://localhost:8080/swagger-ui.html，可以发
 
 参数：
 
-1. tag：controller的注释
+1. tags：controller的注释
 
 
 
 * @ApiOperation
 
-作用：标记在controller类的方法上，说明该接口的功能
+作用：标记在使用 @RequestMapping 来映射请求的方法上，说明该接口的功能
 
 参数：
 
 1. value: 接口的注释
+
+
+
+使用这两个注解后，效果如下，与 [swagger-ui](#swagger-ui)  对比，可以发现controller和这个controller里面的/login接口都有相应的注释了
+
+![image-20220328182710456](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220328182710456.png)
+
+
+
+
+
+
+
+
+
+* ApiImplicitParams
+
+作用：用于get请求，标记在使用 @GetMapping 来映射请求的方法上，说明该接口有哪些参数，与ApiImplicitParam配合使用
+
+* ApiImplicitParam
+
+作用：用于ApiImplicitParams注解内，说明接口的其中一个参数
+
+
+
+两者使用示例：
+
+```java
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "currentPage",value = "当前页码",dataType = "int",example = "1"),
+			@ApiImplicitParam(name = "numOfRecordsPerPage",value = "每页数据条数",dataType = "int",example = "5")
+	})
+```
+
+
+
+效果如下：![image-20220329013500875](C:\Users\HP\IdeaProjects\swaggerdemo\assert\image-20220329013500875.png)
+
+其中ApiImplicitParam的example参数将在测试接口时当成默认值
+
+点击try it out，效果如下
+
+![image-20220329013621754](C:\Users\HP\IdeaProjects\swaggerdemo\assert\image-20220329013621754.png)
+
+
+
+
+
+* @ApiParam
+
+标记在参数列表中的一个参数上，效果与@ApiImplicitParam一样，但是不需要指定dataType
+
+
 
 
 
@@ -336,9 +389,9 @@ public class HelloController
 
 ```
 
-与 [swagger-ui](#swagger-ui)  对比，可以发现controller和这个controller里面的/login接口都有相应的注释了
 
-![image-20220328182710456](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220328182710456.png)
+
+
 
 
 
