@@ -8,12 +8,22 @@ SpringBoot集成了Swagger后，可以非常方便前后端进行接口参数的
 
 ## 步骤
 
+0. [创建项目](#NewProject)
+
 1. [导入Maven依赖](#MavenDependencies)
 2. [编写SpringBoot的一个demo](#SpringBootDemo)
 3. [配置Swagger](#SwaggerConfig)
 4. [给接口和实体类添加注释](#AddComment)
 
 
+
+<a name="NewProject"></a>
+
+## 创建项目
+
+File - New - Project 选Maven项目
+
+![image-20220328200458201](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220328200458201.png)
 
 
 
@@ -165,7 +175,7 @@ public class HelloController
 
 启动项目后，访问http://localhost:8080/swagger-ui.html
 
-![image-20220328171808805](\assert\image-20220328171808805.png)
+![image-20220328171808805](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220328171808805.png)
 
 
 
@@ -210,7 +220,7 @@ public class SwaggerConfig
 
 __重启项目__，再次打开http://localhost:8080/swagger-ui.html，可以发现标题等内容被修改
 
-![image-20220328174036984](C:\Users\HP\IdeaProjects\swaggerdemo\assert\image-20220328174036984.png)
+![image-20220328174036984](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220328174036984.png)
 
 
 
@@ -269,15 +279,15 @@ public class SwaggerConfig
 
 __重启项目__，再次打开http://localhost:8080/swagger-ui.html，可以发现下拉框中有第二个组
 
-![image-20220328174923084](C:\Users\HP\IdeaProjects\swaggerdemo\assert\image-20220328174923084.png)
+![image-20220328174923084](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220328174923084.png)
 
 点进去后，标题是第二个组的标题
 
-![image-20220328175030710](C:\Users\HP\AppData\Roaming\Typora\typora-user-images\image-20220328175030710.png)
+![image-20220328175030710](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220328175030710.png)
 
 
 
-* 通过配置不同组扫描的包，可以让不同的人负责各自的接口信息
+* 通过配置不同组扫描的包，可以让不同的人负责写各自的接口信息
 
 <a name="AddComment"></a>
 
@@ -326,9 +336,9 @@ public class HelloController
 
 ```
 
-与 [swagger-ui](#swagger-ui)  对比，可以发现controller和这个controller里面的/login接口都有注释了
+与 [swagger-ui](#swagger-ui)  对比，可以发现controller和这个controller里面的/login接口都有相应的注释了
 
-![image-20220328182710456](C:\Users\HP\IdeaProjects\swaggerdemo\assert\image-20220328182710456.png)
+![image-20220328182710456](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220328182710456.png)
 
 
 
@@ -354,7 +364,7 @@ public class HelloController
 
  	1. value 实体类属性的注释
  	2. position 这个属性在swagger文档对应的model中的显示顺序
-	1. example 这个属性的示例值
+ 	1. example 这个属性的示例值
 
 
 
@@ -448,9 +458,9 @@ public class R<T> implements Serializable {
 
 与 [swagger-ui](#swagger-ui)  对比，可以发现接口里的请求参数和响应参数都有注释和示例了，下面的model也有注释和示例了
 
-![image-20220328184756332](C:\Users\HP\IdeaProjects\swaggerdemo\assert\image-20220328184756332.png)
+![image-20220328184756332](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220328184756332.png)
 
-![image-20220328184826057](C:\Users\HP\AppData\Roaming\Typora\typora-user-images\image-20220328184826057.png)
+![image-20220328184826057](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220328184826057.png)
 
 
 
@@ -543,13 +553,13 @@ public class testDocs
 
 其中，获取接口数据的url在 http://localhost:8080/swagger-ui.html 中有显示，如下图的红框
 
-![image-20220328190247925](C:\Users\HP\IdeaProjects\swaggerdemo\assert\image-20220328190247925.png)
+![image-20220328190247925](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220328190247925.png)
 
 
 
 执行这个测试方法，可以在项目的src/docs/markdown/generated/目录下找到输出的markdown文件api.md
 
-![image-20220328190526293](C:\Users\HP\IdeaProjects\swaggerdemo\assert\image-20220328190526293.png)
+![image-20220328190526293](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220328190526293.png)
 
 至此，成功生成静态文档。只需要将md转换成想要的格式，如pdf或doc等。
 
@@ -577,8 +587,12 @@ java.lang.RuntimeException: Error creating extended parser class: Could not dete
 
 打开Run/Debug Configurations
 
-![image-20220328191349516](C:\Users\HP\AppData\Roaming\Typora\typora-user-images\image-20220328191349516.png)
+![image-20220328191349516](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220328191349516.png)
+
+
+
+
 
 将jdk调成1.8
 
-![image-20220328191547091](C:\Users\HP\IdeaProjects\swaggerdemo\assert\image-20220328191547091.png)
+![image-20220328191547091](https://raw.githubusercontent.com/grinch2113/SwaggerDemo/master/assert/image-20220328191547091.png)
