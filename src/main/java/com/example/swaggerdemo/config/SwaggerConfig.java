@@ -25,7 +25,7 @@ public class SwaggerConfig
 		return new Docket(DocumentationType.SWAGGER_2)
 				.apiInfo(new ApiInfo(
 						"第二个接口文档",       				// swagger页面标题
-						"该文档描述了Hello Controller",   	// swagger页面描述
+						"该文档描述了迭代2的接口信息",   	// swagger页面描述
 						"1.1",          					// 标题右边的版本号
 						"",      							// 留空
 						new Contact("", "", ""),   			// 作者联系方式
